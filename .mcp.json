@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "quickbooks": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@openclaw/quickbooks-mcp"
+      ],
+      "env": {
+        "QBO_CLIENT_ID": "",
+        "QBO_CLIENT_SECRET": "",
+        "QBO_REALM_ID": "",
+        "QBO_ACCESS_TOKEN": "",
+        "QBO_REFRESH_TOKEN": ""
+      }
+    }
+  }
+}
