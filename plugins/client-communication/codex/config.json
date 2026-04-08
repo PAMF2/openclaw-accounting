@@ -1,0 +1,10 @@
+{
+  "name": "Accounting Client Communication",
+  "description": "Draft professional client emails — document requests, advisory letters, engagement letters, payment reminders, and status updates.",
+  "conversation_starters": [
+    "Write a document request email for a new S-Corp client",
+    "Draft a friendly payment reminder for an overdue invoice",
+    "Create a year-end tax planning advisory letter",
+    "Write a follow-up for missing documents — this is the 3rd request"
+  ]
+}

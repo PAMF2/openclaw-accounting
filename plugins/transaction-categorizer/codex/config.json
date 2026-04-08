@@ -1,0 +1,13 @@
+{
+  "name": "Accounting Transaction Categorizer",
+  "description": "Auto-categorize bank and credit card transactions with GL codes, anomaly detection, and tax deduction flags. For bookkeepers and accountants.",
+  "conversation_starters": [
+    "Categorize these bank transactions for my consulting client",
+    "Review this month's credit card statement and flag anomalies",
+    "I have 200 uncategorized transactions — help me batch categorize",
+    "Set up GL mapping rules for a restaurant client"
+  ],
+  "capabilities": {
+    "code_interpreter": true
+  }
+}

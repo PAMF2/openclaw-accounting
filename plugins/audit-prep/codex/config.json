@@ -1,0 +1,10 @@
+{
+  "name": "Audit Prep Assistant",
+  "description": "Generate audit workpapers, PBC lists, reconciliation templates, and management letter comments. GAAS/PCAOB compliant.",
+  "conversation_starters": [
+    "Generate a PBC list for a manufacturing company audit",
+    "Create a bank reconciliation workpaper template",
+    "Draft management letter comments for these internal control findings",
+    "Build an AR confirmation letter template for year-end audit"
+  ]
+}

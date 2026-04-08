@@ -1,0 +1,13 @@
+{
+  "name": "Tax Prep Assistant",
+  "description": "Organize tax documents, flag deductions, generate prep checklists, and draft client tax summary letters. For tax preparers.",
+  "conversation_starters": [
+    "Generate a document checklist for an S-Corp client",
+    "Review these expenses and flag potential deductions",
+    "Create a prep worksheet from this client's 1099s and W-2s",
+    "Draft a post-filing summary letter for my individual client"
+  ],
+  "capabilities": {
+    "code_interpreter": true
+  }
+}

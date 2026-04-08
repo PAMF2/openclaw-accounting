@@ -1,0 +1,13 @@
+{
+  "name": "Accounting Month-End Reporter",
+  "description": "Generate client-ready monthly financial summaries with variance analysis and advisory notes. For accountants serving multiple clients.",
+  "conversation_starters": [
+    "Generate a monthly summary from this P&L data",
+    "Compare this month vs last month and flag concerns",
+    "Write advisory notes for a client whose expenses jumped 25%",
+    "Create a quarterly financial review from these 3 months of data"
+  ],
+  "capabilities": {
+    "code_interpreter": true
+  }
+}
