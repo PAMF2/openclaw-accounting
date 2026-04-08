@@ -1,0 +1,300 @@
+account_number,account_name,account_type,normal_balance,description,common_vendors
+1000,Cash - Operating,Asset,Debit,Primary operating checking account,"Bank transfers, deposits"
+1010,Cash - Payroll,Asset,Debit,Dedicated payroll checking account,"ADP, Gusto, Paychex"
+1020,Cash - Savings,Asset,Debit,Business savings / money market account,"Marcus, Ally, Capital One"
+1030,Cash - Petty Cash,Asset,Debit,Small cash on hand for incidental expenses,Office manager
+1050,Cash - Merchant Services,Asset,Debit,Funds held in payment processor accounts,"Stripe, Square, PayPal"
+1100,Accounts Receivable,Asset,Debit,Amounts owed by customers for goods/services delivered,Customer invoices
+1110,Accounts Receivable - Retainers,Asset,Debit,Prepaid retainer balances from clients,Client retainer deposits
+1120,Allowance for Doubtful Accounts,Asset,Credit,Contra-asset reserve for uncollectible AR,Internal estimate
+1200,Inventory - Raw Materials,Asset,Debit,Raw materials purchased for manufacturing,Material suppliers
+1210,Inventory - Work in Process,Asset,Debit,Partially completed goods in production,Internal transfers
+1220,Inventory - Finished Goods,Asset,Debit,Completed goods available for sale,Internal transfers
+1230,Inventory - Merchandise,Asset,Debit,Goods purchased for resale,Wholesale distributors
+1250,Inventory Reserve,Asset,Credit,Contra-asset for obsolete or damaged inventory,Internal estimate
+1300,Prepaid Insurance,Asset,Debit,Insurance premiums paid in advance,"State Farm, Hartford, Hiscox"
+1310,Prepaid Rent,Asset,Debit,Rent paid in advance,Landlord / property manager
+1320,Prepaid Software Subscriptions,Asset,Debit,Annual SaaS subscriptions paid upfront,"Salesforce, HubSpot, Adobe"
+1330,Prepaid Advertising,Asset,Debit,Advertising costs paid in advance,"Google Ads, Meta Ads"
+1340,Prepaid Taxes,Asset,Debit,Estimated tax payments made in advance,IRS / State tax authority
+1350,Prepaid Other,Asset,Debit,Other prepaid expenses not classified elsewhere,Various
+1400,Employee Advances,Asset,Debit,Short-term loans or advances to employees,Payroll system
+1410,Notes Receivable - Current,Asset,Debit,Promissory notes receivable due within 12 months,Borrowers
+1420,Interest Receivable,Asset,Debit,Accrued interest income not yet received,Banks / borrowers
+1430,Other Current Assets,Asset,Debit,Miscellaneous current assets,Various
+1500,Security Deposits,Asset,Debit,Deposits held by landlords or utilities,"Landlord, utility companies"
+1510,Loans to Officers,Asset,Debit,Loans made to company officers or shareholders,Officers
+1520,Loans to Related Parties,Asset,Debit,Loans to affiliated companies or related persons,Related entities
+1600,Land,Asset,Debit,Cost of land owned by the business,Real estate transactions
+1610,Buildings,Asset,Debit,Cost of buildings owned by the business,Construction / purchase
+1615,Accumulated Depreciation - Buildings,Asset,Credit,Contra-asset for building depreciation,Internal calculation
+1620,Leasehold Improvements,Asset,Debit,Improvements to leased space,Contractors / build-out
+1625,Accumulated Depreciation - Leasehold Improvements,Asset,Credit,Contra-asset for leasehold improvement depreciation,Internal calculation
+1630,Furniture and Fixtures,Asset,Debit,"Desks, chairs, shelving, display cases","IKEA, Steelcase, Herman Miller"
+1635,Accumulated Depreciation - Furniture and Fixtures,Asset,Credit,Contra-asset for furniture depreciation,Internal calculation
+1640,Computer Equipment,Asset,Debit,"Servers, desktops, laptops, monitors","Dell, Apple, Lenovo, HP"
+1645,Accumulated Depreciation - Computer Equipment,Asset,Credit,Contra-asset for computer equipment depreciation,Internal calculation
+1650,Machinery and Equipment,Asset,Debit,Production machinery and specialized equipment,"Caterpillar, John Deere, various"
+1655,Accumulated Depreciation - Machinery and Equipment,Asset,Credit,Contra-asset for machinery depreciation,Internal calculation
+1660,Vehicles,Asset,Debit,Company-owned cars and trucks,"Ford, Toyota, GM dealerships"
+1665,Accumulated Depreciation - Vehicles,Asset,Credit,Contra-asset for vehicle depreciation,Internal calculation
+1670,Software - Capitalized,Asset,Debit,Internally developed or purchased software (>$2500),Software vendors
+1675,Accumulated Amortization - Software,Asset,Credit,Contra-asset for capitalized software amortization,Internal calculation
+1680,Construction in Progress,Asset,Debit,Costs for assets under construction,Contractors
+1690,Other Fixed Assets,Asset,Debit,Fixed assets not classified elsewhere,Various
+1695,Accumulated Depreciation - Other,Asset,Credit,Contra-asset for other fixed asset depreciation,Internal calculation
+1700,Goodwill,Asset,Debit,Excess purchase price over fair value in acquisitions,Acquisitions
+1710,Trademarks and Patents,Asset,Debit,Registered intellectual property costs,USPTO / attorneys
+1715,Accumulated Amortization - Intangibles,Asset,Credit,Contra-asset for intangible amortization,Internal calculation
+1720,Organization Costs,Asset,Debit,Costs to form the business entity,"Attorneys, state filing fees"
+1730,Customer Lists,Asset,Debit,Acquired customer relationships,Acquisitions
+1740,Non-Compete Agreements,Asset,Debit,Purchased non-compete agreement values,Acquisitions
+1800,Investments - Marketable Securities,Asset,Debit,Short-term investments in stocks or bonds,"Schwab, Fidelity, Vanguard"
+1810,Investments - Long-Term,Asset,Debit,Long-term equity or debt investments,Brokerage firms
+1820,Cash Surrender Value - Life Insurance,Asset,Debit,Cash value of company-owned life insurance policies,Insurance carriers
+1900,Other Assets,Asset,Debit,Assets not classified in other categories,Various
+2000,Accounts Payable,Liability,Credit,Amounts owed to vendors for goods/services received,All vendors
+2010,Accounts Payable - Accrued,Liability,Credit,Expenses incurred but not yet billed,Internal accruals
+2050,Credit Card Payable - Visa,Liability,Credit,Outstanding balance on company Visa card,"Chase, Capital One, Amex"
+2051,Credit Card Payable - Mastercard,Liability,Credit,Outstanding balance on company Mastercard,"Citi, Bank of America"
+2052,Credit Card Payable - Amex,Liability,Credit,Outstanding balance on company Amex card,American Express
+2053,Credit Card Payable - Other,Liability,Credit,Outstanding balance on other company credit cards,Various issuers
+2100,Notes Payable - Current,Liability,Credit,Short-term loans due within 12 months,"Banks, SBA"
+2110,Current Portion of Long-Term Debt,Liability,Credit,Principal payments due within 12 months on LT debt,Lenders
+2120,Line of Credit,Liability,Credit,Outstanding balance on revolving credit line,"Banks, credit unions"
+2200,Accrued Wages and Salaries,Liability,Credit,Wages earned by employees but not yet paid,Payroll
+2210,Accrued Payroll Taxes,Liability,Credit,Employer payroll taxes accrued but not remitted,"IRS, state agencies"
+2220,Accrued Vacation / PTO,Liability,Credit,Accumulated employee PTO liability,Internal calculation
+2230,Accrued Bonuses,Liability,Credit,Employee bonuses earned but not yet paid,Internal accrual
+2240,Accrued Commissions,Liability,Credit,Sales commissions earned but not yet paid,Internal accrual
+2250,Accrued Benefits,Liability,Credit,Employee benefit costs accrued but not paid,"Insurance, 401k providers"
+2300,Federal Income Tax Payable,Liability,Credit,Federal income taxes owed but not yet remitted,IRS
+2310,State Income Tax Payable,Liability,Credit,State income taxes owed but not yet remitted,State tax authority
+2320,Sales Tax Payable,Liability,Credit,Sales taxes collected but not yet remitted,State / local tax authority
+2330,Payroll Tax Payable - Federal,Liability,Credit,Federal payroll taxes withheld but not yet remitted,IRS (941 deposits)
+2331,Payroll Tax Payable - FICA,Liability,Credit,Social Security and Medicare taxes withheld,IRS
+2332,Payroll Tax Payable - FUTA,Liability,Credit,Federal unemployment taxes payable,IRS
+2340,Payroll Tax Payable - State,Liability,Credit,State payroll taxes withheld but not yet remitted,State agencies
+2341,Payroll Tax Payable - SUI,Liability,Credit,State unemployment insurance taxes payable,State workforce agency
+2350,Property Tax Payable,Liability,Credit,Real and personal property taxes accrued,County / city tax authority
+2400,Unearned Revenue,Liability,Credit,Payments received before services/goods delivered,Customer prepayments
+2410,Customer Deposits,Liability,Credit,Refundable deposits received from customers,Customers
+2420,Gift Card Liability,Liability,Credit,Outstanding unredeemed gift card balances,Internal tracking
+2500,Notes Payable - Long Term,Liability,Credit,Loans with maturity beyond 12 months,"Banks, SBA, private lenders"
+2510,Mortgage Payable,Liability,Credit,Mortgage on business real property,Mortgage lender
+2520,Equipment Loans Payable,Liability,Credit,Financing for equipment purchases,Equipment finance companies
+2530,Vehicle Loans Payable,Liability,Credit,Financing for company vehicles,"Banks, dealer financing"
+2540,Capital Lease Obligations,Liability,Credit,Present value of capital/finance lease payments,Lessors
+2550,Bonds Payable,Liability,Credit,Corporate bonds issued and outstanding,Bondholders
+2600,Deferred Tax Liability,Liability,Credit,Income taxes owed in future periods,Internal calculation
+2610,Deferred Rent,Liability,Credit,Difference between straight-line and actual rent,Internal calculation
+2700,Other Current Liabilities,Liability,Credit,Short-term liabilities not classified elsewhere,Various
+2800,Other Long-Term Liabilities,Liability,Credit,Long-term liabilities not classified elsewhere,Various
+3000,Common Stock,Equity,Credit,Par value of common shares issued,Shareholders
+3010,Preferred Stock,Equity,Credit,Par value of preferred shares issued,Shareholders
+3020,Additional Paid-In Capital,Equity,Credit,Amounts received above par value on stock issuance,Shareholders
+3030,Treasury Stock,Equity,Debit,Cost of shares repurchased by the company,Internal / buyback
+3100,Retained Earnings,Equity,Credit,Accumulated net income less dividends,Internal calculation
+3110,Dividends Declared,Equity,Debit,Dividends declared and distributed to shareholders,Shareholders
+3200,Owner's Equity / Capital,Equity,Credit,Owner investment in sole proprietorship or partnership,Owner
+3210,Owner's Draws / Distributions,Equity,Debit,Withdrawals by owners or partners,Owner
+3220,Partner A - Capital,Equity,Credit,Capital account for Partner A,Partner A
+3221,Partner A - Draws,Equity,Debit,Withdrawals by Partner A,Partner A
+3230,Partner B - Capital,Equity,Credit,Capital account for Partner B,Partner B
+3231,Partner B - Draws,Equity,Debit,Withdrawals by Partner B,Partner B
+3300,Shareholder Distributions,Equity,Debit,S-Corp distributions to shareholders,Shareholders
+3400,Accumulated Other Comprehensive Income,Equity,Credit,Unrealized gains/losses on investments and FX,Internal calculation
+4000,Revenue - Product Sales,Revenue,Credit,Income from sale of physical products,Customers
+4010,Revenue - Service Income,Revenue,Credit,Income from services rendered,Customers / clients
+4020,Revenue - Consulting Fees,Revenue,Credit,Income from consulting engagements,Clients
+4030,Revenue - Subscription / Recurring,Revenue,Credit,Recurring subscription or membership revenue,Subscribers
+4040,Revenue - Project / Contract,Revenue,Credit,Revenue from fixed-price projects or contracts,Contract clients
+4050,Revenue - Licensing / Royalties,Revenue,Credit,Income from IP licensing and royalties,Licensees
+4060,Revenue - Commission Income,Revenue,Credit,Commissions earned on sales or referrals,Partners / affiliates
+4070,Revenue - Rental Income,Revenue,Credit,Income from renting property or equipment,Tenants
+4080,Revenue - Government Contracts,Revenue,Credit,Revenue from government contracts and grants,Government agencies
+4090,Revenue - Franchise Fees,Revenue,Credit,Fees earned from franchise agreements,Franchisees
+4100,Revenue - SaaS,Revenue,Credit,Software-as-a-service recurring revenue,Subscribers
+4110,Revenue - Professional Services,Revenue,Credit,Implementation and professional services revenue,Clients
+4120,Revenue - Training / Education,Revenue,Credit,Revenue from training courses and programs,Participants
+4200,Revenue - Food Sales,Revenue,Credit,Revenue from food and beverage sales (restaurants),Dine-in / takeout customers
+4210,Revenue - Bar / Beverage Sales,Revenue,Credit,Revenue from alcoholic and non-alcoholic beverage sales,Bar customers
+4220,Revenue - Catering,Revenue,Credit,Revenue from catering events,Event clients
+4300,Revenue - Construction Contracts,Revenue,Credit,Revenue recognized on construction contracts,Project owners
+4310,Revenue - Change Orders,Revenue,Credit,Additional revenue from construction change orders,Project owners
+4400,Revenue - E-Commerce,Revenue,Credit,Online retail sales,Online customers
+4500,Sales Returns and Allowances,Revenue,Debit,Refunds and credits issued to customers,Customers
+4510,Sales Discounts,Revenue,Debit,Cash or volume discounts given to customers,Customers
+4600,Other Revenue,Revenue,Credit,Miscellaneous revenue not classified above,Various
+4700,Interest Income,Revenue,Credit,Interest earned on bank accounts or investments,"Banks, borrowers"
+4710,Dividend Income,Revenue,Credit,Dividends received on investments,Investment holdings
+4720,Gain on Sale of Assets,Revenue,Credit,Profit from disposing of fixed assets,Asset buyers
+4730,Gain on Investments,Revenue,Credit,Realized gains on sale of investment securities,Brokerage firms
+4740,Rental Income - Non-Operating,Revenue,Credit,Incidental rental income outside core operations,Tenants
+4750,Miscellaneous Income,Revenue,Credit,One-time or incidental income items,Various
+4760,Insurance Proceeds,Revenue,Credit,Amounts received from insurance claims,Insurance carriers
+4770,Bad Debt Recovery,Revenue,Credit,Previously written off AR subsequently collected,Former customers
+5000,Cost of Goods Sold - Materials,COGS,Debit,Direct materials used in products sold,Material suppliers
+5010,Cost of Goods Sold - Labor,COGS,Debit,Direct labor costs for producing goods,Production employees
+5020,Cost of Goods Sold - Manufacturing Overhead,COGS,Debit,Indirect production costs allocated to goods,Various production costs
+5030,Cost of Goods Sold - Freight In,COGS,Debit,Shipping costs to receive inventory,"UPS, FedEx, freight carriers"
+5040,Cost of Goods Sold - Subcontractors,COGS,Debit,Subcontractor costs directly tied to revenue,Subcontractors
+5050,Cost of Goods Sold - Purchases for Resale,COGS,Debit,Merchandise purchased for direct resale,Wholesale distributors
+5060,Cost of Goods Sold - Food,COGS,Debit,Food ingredient and supply costs (restaurants),"Sysco, US Foods, local suppliers"
+5070,Cost of Goods Sold - Beverage,COGS,Debit,Beverage costs including alcohol (restaurants),"Distributors, breweries"
+5080,Cost of Goods Sold - Packaging,COGS,Debit,Packaging materials for products sold,"Uline, packaging suppliers"
+5100,Cost of Revenue - Hosting,COGS,Debit,Cloud hosting costs directly tied to SaaS revenue,"AWS, GCP, Azure"
+5110,Cost of Revenue - Third Party Services,COGS,Debit,Third-party API and service costs tied to revenue,"Twilio, SendGrid, Stripe"
+5120,Cost of Revenue - Customer Support,COGS,Debit,Support team costs directly attributable to revenue,"Zendesk, Intercom"
+5130,Cost of Revenue - Professional Services,COGS,Debit,Delivery costs for professional services engagements,Subcontractors / staff
+5200,Inventory Adjustments,COGS,Debit,Shrinkage and write-downs of inventory,Internal adjustments
+5210,Purchase Returns and Allowances,COGS,Credit,Returns and credits from suppliers,Suppliers
+5220,Purchase Discounts,COGS,Credit,Early payment discounts received from suppliers,Suppliers
+5300,Cost of Construction - Materials,COGS,Debit,Materials used in construction projects,Lumber yards / supply houses
+5310,Cost of Construction - Labor,COGS,Debit,Direct labor on construction projects,Construction crews
+5320,Cost of Construction - Subcontractors,COGS,Debit,Subcontractor costs on construction jobs,Licensed subcontractors
+5330,Cost of Construction - Equipment Rental,COGS,Debit,Equipment rented for construction projects,"United Rentals, Sunbelt"
+5340,Cost of Construction - Permits,COGS,Debit,Permit fees for construction projects,Municipality
+5500,Applied Overhead,COGS,Credit,Manufacturing overhead applied to production,Internal allocation
+5900,Other Cost of Sales,COGS,Debit,Direct costs not classified above,Various
+6000,Salaries and Wages,Expense,Debit,Regular employee compensation,"ADP, Gusto, Paychex"
+6010,Officer Compensation,Expense,Debit,Salaries paid to corporate officers,Officers
+6020,Overtime Pay,Expense,Debit,Overtime wages paid to non-exempt employees,Payroll
+6030,Bonuses,Expense,Debit,Performance and discretionary bonuses,Payroll
+6040,Commissions Expense,Expense,Debit,Sales commissions paid to employees,Payroll
+6050,Contract Labor / 1099,Expense,Debit,Payments to independent contractors,Contractors (1099-NEC)
+6060,Temporary Staffing,Expense,Debit,Fees paid to temp agencies,"Robert Half, Adecco, Kelly"
+6100,Payroll Taxes - Employer,Expense,Debit,"Employer portion of FICA, FUTA, SUI","IRS, state agencies"
+6110,Health Insurance,Expense,Debit,Company-paid health insurance premiums,"Blue Cross, Aetna, United"
+6120,Dental Insurance,Expense,Debit,Company-paid dental insurance premiums,"Delta Dental, MetLife"
+6130,Vision Insurance,Expense,Debit,Company-paid vision insurance premiums,"VSP, EyeMed"
+6140,Life Insurance,Expense,Debit,Company-paid life insurance premiums,"MetLife, Prudential"
+6150,Disability Insurance,Expense,Debit,Short and long-term disability insurance premiums,Insurance carriers
+6160,Workers Compensation,Expense,Debit,Workers compensation insurance premiums,"Hartford, State Fund"
+6170,401(k) Employer Match,Expense,Debit,Company matching contributions to 401(k),"Fidelity, Vanguard, Guideline"
+6180,Employee Benefits - Other,Expense,Debit,"Other benefits: gym, wellness, education","Various benefit providers"
+6190,Retirement Plan Admin,Expense,Debit,Administrative fees for retirement plans,Plan administrators
+6200,Rent Expense,Expense,Debit,Monthly rent for office or retail space,Landlord / property manager
+6210,Common Area Maintenance (CAM),Expense,Debit,Shared building maintenance charges,Property manager
+6220,Storage Rental,Expense,Debit,Off-site storage unit rental,"Public Storage, U-Haul"
+6250,Equipment Rental,Expense,Debit,Short-term rental of tools and equipment,"United Rentals, Home Depot"
+6300,Utilities - Electric,Expense,Debit,Electricity charges for business premises,"Local utility, Con Edison"
+6310,Utilities - Gas,Expense,Debit,Natural gas charges for business premises,Local gas utility
+6320,Utilities - Water / Sewer,Expense,Debit,Water and sewer charges,Municipal water authority
+6330,Utilities - Trash / Recycling,Expense,Debit,Waste removal services,"Waste Management, Republic"
+6340,Telephone / Internet,Expense,Debit,Business phone and internet service,"AT&T, Comcast, Verizon"
+6350,Cell Phone,Expense,Debit,Company cell phone plans and reimbursements,"Verizon, AT&T, T-Mobile"
+6400,Office Supplies,Expense,Debit,"Paper, pens, toner, general office consumables","Staples, Amazon, Office Depot"
+6410,Postage and Shipping,Expense,Debit,Mailing and shipping costs,"USPS, UPS, FedEx"
+6420,Printing and Reproduction,Expense,Debit,Printing services and copy costs,"FedEx Office, Staples Print"
+6430,Computer Supplies,Expense,Debit,"Keyboards, mice, cables, small peripherals","Amazon, Best Buy, Newegg"
+6440,Cleaning Supplies,Expense,Debit,Janitorial and cleaning materials,"Amazon, Staples, Costco"
+6450,Kitchen / Breakroom Supplies,Expense,Debit,"Coffee, plates, napkins for employee area","Amazon, Costco, Sam's Club"
+6500,Software Subscriptions (SaaS),Expense,Debit,Monthly/annual cloud software subscriptions,"Microsoft 365, Google, Slack"
+6510,Cloud Hosting / Infrastructure,Expense,Debit,Cloud computing and infrastructure costs,"AWS, GCP, Azure, Heroku"
+6520,Domain and Hosting,Expense,Debit,Website domain registration and web hosting,"GoDaddy, Cloudflare, Netlify"
+6530,IT Support / Managed Services,Expense,Debit,Outsourced IT support and management,IT service providers
+6540,Software Licenses - Perpetual,Expense,Debit,One-time software license purchases,"Microsoft, Adobe, Autodesk"
+6600,Advertising - Online,Expense,Debit,Digital advertising spend,"Google Ads, Meta Ads, LinkedIn"
+6610,Advertising - Print / Outdoor,Expense,Debit,Print media and billboard advertising,"Newspapers, Lamar, Clear Channel"
+6620,Marketing - Content / Design,Expense,Debit,Content creation and graphic design,"Fiverr, 99designs, agencies"
+6630,Marketing - Events / Trade Shows,Expense,Debit,Trade show registration and booth costs,Event organizers
+6640,Marketing - Social Media,Expense,Debit,Social media management tools and boosted posts,"Hootsuite, Buffer, Meta"
+6650,Marketing - Email / CRM,Expense,Debit,Email marketing and CRM platform costs,"Mailchimp, HubSpot, Constant Contact"
+6660,Marketing - SEO / SEM,Expense,Debit,SEO tools and search engine marketing,SEO agencies / tools
+6670,Public Relations,Expense,Debit,PR agency fees and media outreach,PR firms
+6680,Sponsorships,Expense,Debit,Event and organization sponsorships,Sponsored organizations
+6690,Promotional Materials,Expense,Debit,"Branded items, swag, giveaways","4imprint, Custom Ink"
+6700,Professional Fees - Accounting,Expense,Debit,Accounting and bookkeeping services,CPA firms
+6710,Professional Fees - Legal,Expense,Debit,Legal counsel and services,Law firms / attorneys
+6720,Professional Fees - Consulting,Expense,Debit,Business consulting and advisory fees,Consultants
+6730,Professional Fees - Tax Preparation,Expense,Debit,Tax return preparation fees,CPA / tax preparer
+6740,Professional Fees - Payroll,Expense,Debit,Payroll processing service fees,"ADP, Gusto, Paychex"
+6750,Professional Fees - HR,Expense,Debit,Human resources consulting and services,HR consultants
+6760,Professional Fees - Engineering,Expense,Debit,Engineering consulting services,Engineering firms
+6770,Professional Fees - Other,Expense,Debit,Other professional services not classified above,Various professionals
+6800,Insurance - General Liability,Expense,Debit,General liability insurance premiums,"Hartford, State Farm, Hiscox"
+6810,Insurance - Professional Liability / E&O,Expense,Debit,Errors and omissions insurance,Insurance carriers
+6820,Insurance - Property,Expense,Debit,Commercial property insurance,Insurance carriers
+6830,Insurance - Cyber Liability,Expense,Debit,Cyber security and data breach insurance,"Chubb, Coalition, Cowbell"
+6840,Insurance - Directors & Officers,Expense,Debit,D&O liability insurance,Insurance carriers
+6850,Insurance - Auto,Expense,Debit,Commercial auto insurance,"GEICO, Progressive, State Farm"
+6860,Insurance - Umbrella,Expense,Debit,Umbrella / excess liability policy,Insurance carriers
+6870,Insurance - Key Person,Expense,Debit,Life insurance on key employees,Insurance carriers
+6900,Auto Expense - Gas / Fuel,Expense,Debit,Fuel for company vehicles,"Shell, BP, ExxonMobil"
+6910,Auto Expense - Maintenance,Expense,Debit,"Oil changes, repairs, tires for company vehicles","Jiffy Lube, Firestone, dealers"
+6920,Auto Expense - Tolls / Parking,Expense,Debit,Tolls and parking fees,Toll authorities / garages
+6930,Auto Expense - Lease Payments,Expense,Debit,Monthly lease payments on company vehicles,Leasing companies
+6940,Auto Expense - Mileage Reimbursement,Expense,Debit,Mileage reimbursement to employees using personal vehicles,Employees (IRS rate)
+7000,Travel - Airfare,Expense,Debit,Flights for business travel,"United, Delta, American, Southwest"
+7010,Travel - Lodging,Expense,Debit,Hotel and accommodation costs,"Marriott, Hilton, Airbnb"
+7020,Travel - Meals (Travel),Expense,Debit,Meals while traveling on business,"Restaurants, DoorDash"
+7030,Travel - Ground Transportation,Expense,Debit,"Taxi, rideshare, rental car while traveling","Uber, Lyft, Enterprise, Hertz"
+7040,Travel - Incidentals,Expense,Debit,"Tips, laundry, baggage fees while traveling",Various
+7050,Travel - Per Diem,Expense,Debit,Fixed daily travel allowance per IRS rates,Employees
+7100,Meals and Entertainment - Business Meals,Expense,Debit,Client and business meals (50% deductible),Restaurants
+7110,Meals and Entertainment - Employee Meals,Expense,Debit,Meals provided to employees for convenience,Restaurants / catering
+7120,Meals and Entertainment - Entertainment,Expense,Debit,Client entertainment expenses (non-deductible post-TCJA),Venues / events
+7130,Meals and Entertainment - Team Events,Expense,Debit,Team building and company events,"Event venues, catering"
+7200,Repairs and Maintenance - Building,Expense,Debit,Building repair and maintenance costs,"Contractors, handyman services"
+7210,Repairs and Maintenance - Equipment,Expense,Debit,Equipment repair and maintenance costs,Service technicians
+7220,Repairs and Maintenance - Vehicles,Expense,Debit,Vehicle repairs not covered under Auto Expense,Mechanic shops
+7230,Repairs and Maintenance - IT / Computers,Expense,Debit,Computer and network repair costs,IT service providers
+7300,Depreciation Expense,Expense,Debit,Periodic depreciation of fixed assets,Internal calculation
+7310,Amortization Expense,Expense,Debit,Periodic amortization of intangible assets,Internal calculation
+7400,Bank Service Charges,Expense,Debit,"Monthly fees, wire fees, NSF charges","Chase, BofA, Wells Fargo"
+7410,Merchant / Payment Processing Fees,Expense,Debit,Credit card processing and gateway fees,"Stripe, Square, PayPal"
+7420,Interest Expense - Loans,Expense,Debit,Interest on business loans and notes,Lenders
+7430,Interest Expense - Line of Credit,Expense,Debit,Interest on revolving credit line,Banks
+7440,Interest Expense - Credit Cards,Expense,Debit,Interest charges on credit card balances,Credit card issuers
+7450,Interest Expense - Mortgage,Expense,Debit,Interest on business mortgage,Mortgage lender
+7460,Late Fees and Penalties,Expense,Debit,Late payment penalties and fees,"IRS, vendors, banks"
+7470,Loan Origination Fees,Expense,Debit,Fees paid to obtain financing,Lenders
+7500,Taxes - Federal Income,Expense,Debit,Federal income tax expense (C-Corp),IRS
+7510,Taxes - State Income,Expense,Debit,State income tax expense,State tax authority
+7520,Taxes - Franchise / Business,Expense,Debit,Annual franchise or business privilege tax,State / local authority
+7530,Taxes - Property,Expense,Debit,Real and personal property taxes,County / city tax authority
+7540,Taxes - Sales and Use,Expense,Debit,Sales and use tax expense (on purchases),State / local authority
+7550,Taxes - Payroll (see 6100),Expense,Debit,Employer payroll taxes (duplicate reference),IRS / state
+7560,Licenses and Permits,Expense,Debit,"Business licenses, professional permits",City / state / regulatory
+7570,Regulatory Fees,Expense,Debit,Industry-specific regulatory compliance fees,Regulatory bodies
+7600,Bad Debt Expense,Expense,Debit,Uncollectible accounts written off,Internal write-off
+7610,Collection Agency Fees,Expense,Debit,Fees paid to third-party collection agencies,Collection agencies
+7700,Training and Education,Expense,Debit,"Courses, seminars, certifications for employees","Udemy, Coursera, conferences"
+7710,Books and Subscriptions,Expense,Debit,"Trade publications, newspapers, online subscriptions","WSJ, industry journals"
+7720,Professional Development,Expense,Debit,"Conference attendance, continuing education",Professional organizations
+7730,Employee Recruiting,Expense,Debit,Job postings and recruiting fees,"Indeed, LinkedIn, recruiters"
+7740,Employee Relocation,Expense,Debit,Moving and relocation assistance for new hires,Moving companies
+7800,Dues and Memberships,Expense,Debit,Professional and trade organization membership fees,"Chamber, AICPA, bar associations"
+7810,Charitable Contributions,Expense,Debit,Donations to qualified 501(c)(3) organizations,Charities / nonprofits
+7820,Gifts - Clients,Expense,Debit,Gifts to clients ($25 deduction limit per person),Various retailers
+7830,Gifts - Employees,Expense,Debit,Non-cash gifts to employees (may be taxable),Various retailers
+7900,Janitorial / Cleaning Services,Expense,Debit,Commercial cleaning service fees,"Coverall, local services"
+7910,Security Services,Expense,Debit,Security guard and alarm monitoring fees,"ADT, local security firms"
+7920,Landscaping,Expense,Debit,Grounds maintenance and landscaping,Landscaping companies
+7930,Pest Control,Expense,Debit,Pest control and extermination services,"Terminix, Orkin"
+7940,Waste Disposal - Hazardous,Expense,Debit,Hazardous waste removal and disposal,Licensed waste haulers
+7950,Snow Removal,Expense,Debit,Snow plowing and ice removal services,Snow removal contractors
+8000,Research and Development,Expense,Debit,R&D activities and experimentation costs,Various
+8010,Patent Application Costs,Expense,Debit,Costs to file and prosecute patent applications,Patent attorneys
+8100,Warranty Expense,Expense,Debit,Estimated warranty costs on products sold,Internal accrual
+8110,Product Liability,Expense,Debit,Product liability insurance and claims,Insurance / legal
+8200,Foreign Exchange Gain / Loss,Expense,Debit,Gains or losses from foreign currency transactions,International vendors
+8210,Unrealized Gain / Loss,Expense,Debit,Mark-to-market gains/losses on investments,Internal calculation
+8300,Loss on Sale of Assets,Expense,Debit,Loss from disposing of fixed assets,Internal calculation
+8310,Loss on Write-Off,Expense,Debit,Loss from writing off abandoned or impaired assets,Internal calculation
+8400,Penalties - Tax,Expense,Debit,IRS or state tax penalties (non-deductible),IRS / state authority
+8410,Penalties - Regulatory,Expense,Debit,Fines from regulatory bodies (non-deductible),Regulatory bodies
+8500,Extraordinary Items,Expense,Debit,Unusual and infrequent gains or losses,Various
+8600,Discontinued Operations,Expense,Debit,Gains or losses from discontinued business lines,Internal classification
+8700,Minority Interest,Expense,Debit,Non-controlling interest share of income,Subsidiary minority holders
+9000,Income Tax Expense - Federal,Expense,Debit,Federal corporate income tax provision,IRS
+9010,Income Tax Expense - State,Expense,Debit,State corporate income tax provision,State authorities
+9020,Deferred Tax Expense / Benefit,Expense,Debit,Change in deferred tax asset/liability,Internal calculation
+9100,Net Income / Loss Summary,Equity,Credit,Period-end closing summary (auto-calculated),System closing entry
+9500,Suspense / Clearing,Other,Debit,Temporary holding account for unclassified transactions,To be reclassified
+9510,Intercompany - Due To,Liability,Credit,Amounts owed to affiliated entities,Related entities
+9520,Intercompany - Due From,Asset,Debit,Amounts owed by affiliated entities,Related entities
+9600,Rounding Adjustments,Other,Debit,Small rounding differences in calculations,Internal adjustment
+9900,Retained Earnings - Prior Period Adjustment,Equity,Credit,Corrections to prior period financial statements,Internal adjustment
+9999,Uncategorized / Ask Accountant,Other,Debit,Transactions requiring manual review and classification,Needs review

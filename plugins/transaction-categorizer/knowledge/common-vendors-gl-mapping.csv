@@ -1,0 +1,141 @@
+vendor_pattern,gl_code,category,tax_deductible,notes
+STAPLES,6400,Office Supplies,Yes,Also sells furniture (>$2500 may be 1630)
+OFFICE DEPOT,6400,Office Supplies,Yes,Also sells furniture and tech
+AMAZON*,6400,Office Supplies,Yes,Default to supplies; review for equipment/inventory purchases
+AMAZON MKTP*,6400,Office Supplies,Yes,Amazon Marketplace - may be personal; flag for review
+AMZN MKTP,6400,Office Supplies,Yes,Amazon Marketplace alternate descriptor
+BEST BUY,1640,Computer Equipment,Yes,Capitalize if >$2500; else 6430 Computer Supplies
+APPLE.COM,1640,Computer Equipment,Yes,Capitalize if >$2500; check for personal device
+DELL*,1640,Computer Equipment,Yes,"Servers, laptops, monitors - capitalize if >$2500"
+MICROSOFT*,6500,Software Subscriptions,Yes,365 / Azure / Dynamics subscriptions
+MSFT*,6500,Software Subscriptions,Yes,Microsoft alternate descriptor
+GOOGLE*,6600,Advertising - Online,Yes,Default to ads; could be Workspace (6500) or Cloud (6510)
+GOOGLE ADS,6600,Advertising - Online,Yes,Google advertising spend
+GOOGLE CLOUD,6510,Cloud Hosting,Yes,GCP infrastructure costs
+GOOGLE WORKSPACE,6500,Software Subscriptions,Yes,Gmail / Docs / Drive business suite
+META ADS,6600,Advertising - Online,Yes,Facebook and Instagram advertising
+FACEBK*,6600,Advertising - Online,Yes,Legacy Facebook ads descriptor
+LINKEDIN*,6600,Advertising - Online,Yes,LinkedIn advertising or recruiter (check for 7730)
+ADOBE*,6500,Software Subscriptions,Yes,Creative Cloud / Acrobat subscriptions
+SALESFORCE*,6500,Software Subscriptions,Yes,CRM subscription
+HUBSPOT*,6500,Software Subscriptions,Yes,CRM / Marketing automation subscription
+SLACK*,6500,Software Subscriptions,Yes,Team communication platform
+ZOOM*,6500,Software Subscriptions,Yes,Video conferencing subscription
+DROPBOX*,6500,Software Subscriptions,Yes,Cloud storage subscription
+ATLASSIAN*,6500,Software Subscriptions,Yes,Jira / Confluence subscriptions
+GITHUB*,6500,Software Subscriptions,Yes,Code repository subscription
+NOTION*,6500,Software Subscriptions,Yes,Workspace/wiki platform
+CANVA*,6500,Software Subscriptions,Yes,Design tool subscription
+FIGMA*,6500,Software Subscriptions,Yes,UI/UX design tool subscription
+QUICKBOOKS*,6500,Software Subscriptions,Yes,Accounting software - Intuit
+INTUIT*,6500,Software Subscriptions,Yes,QuickBooks / TurboTax / payroll
+XERO*,6500,Software Subscriptions,Yes,Accounting software
+FRESHBOOKS*,6500,Software Subscriptions,Yes,Invoicing and accounting software
+AWS*,6510,Cloud Hosting,Yes,Amazon Web Services infrastructure
+HEROKU*,6510,Cloud Hosting,Yes,Platform-as-a-service hosting
+DIGITALOCEAN*,6510,Cloud Hosting,Yes,Cloud infrastructure
+CLOUDFLARE*,6520,Domain and Hosting,Yes,CDN / DNS / web security
+GODADDY*,6520,Domain and Hosting,Yes,Domain registration and hosting
+NAMECHEAP*,6520,Domain and Hosting,Yes,Domain registration
+NETLIFY*,6520,Domain and Hosting,Yes,Static site hosting
+VERCEL*,6520,Domain and Hosting,Yes,Frontend deployment platform
+STRIPE*,7410,Payment Processing Fees,Yes,Credit card processing fees
+SQUARE*,7410,Payment Processing Fees,Yes,Point-of-sale processing fees
+PAYPAL*,7410,Payment Processing Fees,Yes,Payment processing; review for purchases vs fees
+SQ *,7410,Payment Processing Fees,Yes,Square alternate descriptor
+CLOVER*,7410,Payment Processing Fees,Yes,POS system and processing
+ADP*,6740,Professional Fees - Payroll,Yes,Payroll processing service
+GUSTO*,6740,Professional Fees - Payroll,Yes,Payroll processing service
+PAYCHEX*,6740,Professional Fees - Payroll,Yes,Payroll processing service
+UBER*,6940,Auto - Mileage/Transport,Yes,Could be Uber Eats (7100) - check description
+UBER EATS,7100,Meals - Business,Partial,50% deductible; flag if frequent
+LYFT*,6940,Auto - Mileage/Transport,Yes,Rideshare for business travel
+DOORDASH*,7100,Meals - Business,Partial,50% deductible; flag if no business purpose
+GRUBHUB*,7100,Meals - Business,Partial,50% deductible; flag if no business purpose
+UBEREATS*,7100,Meals - Business,Partial,50% deductible; flag if no business purpose
+DELTA AIR,7000,Travel - Airfare,Yes,Airline travel
+UNITED AIR,7000,Travel - Airfare,Yes,Airline travel
+AMERICAN AIR,7000,Travel - Airfare,Yes,Airline travel
+SOUTHWEST,7000,Travel - Airfare,Yes,Airline travel
+JETBLUE*,7000,Travel - Airfare,Yes,Airline travel
+SPIRIT AIR,7000,Travel - Airfare,Yes,Airline travel
+FRONTIER AIR,7000,Travel - Airfare,Yes,Airline travel
+MARRIOTT*,7010,Travel - Lodging,Yes,Hotel stay
+HILTON*,7010,Travel - Lodging,Yes,Hotel stay
+HYATT*,7010,Travel - Lodging,Yes,Hotel stay
+IHG*,7010,Travel - Lodging,Yes,Holiday Inn / Crowne Plaza
+AIRBNB*,7010,Travel - Lodging,Yes,Short-term rental; verify business purpose
+HOTEL*,7010,Travel - Lodging,Yes,Generic hotel charge
+ENTERPRISE*,7030,Travel - Ground Transport,Yes,Rental car
+HERTZ*,7030,Travel - Ground Transport,Yes,Rental car
+AVIS*,7030,Travel - Ground Transport,Yes,Rental car
+NATIONAL CAR,7030,Travel - Ground Transport,Yes,Rental car
+BUDGET RENT,7030,Travel - Ground Transport,Yes,Rental car
+USPS*,6410,Postage and Shipping,Yes,US Postal Service
+UPS*,6410,Postage and Shipping,Yes,United Parcel Service
+FEDEX*,6410,Postage and Shipping,Yes,Federal Express shipping
+DHL*,6410,Postage and Shipping,Yes,International shipping
+STAMPS.COM,6410,Postage and Shipping,Yes,Online postage service
+VERIZON*,6340,Telephone / Internet,Yes,Phone and internet service; check for cell (6350)
+AT&T*,6340,Telephone / Internet,Yes,Phone and internet service
+COMCAST*,6340,Telephone / Internet,Yes,Internet / cable service
+T-MOBILE*,6350,Cell Phone,Yes,Mobile phone service
+SPRINT*,6350,Cell Phone,Yes,Mobile phone service (now T-Mobile)
+SHELL OIL,6900,Auto - Fuel,Yes,Gas station; verify for company vehicle
+EXXONMOBIL,6900,Auto - Fuel,Yes,Gas station; verify for company vehicle
+BP*,6900,Auto - Fuel,Yes,Gas station; may include convenience store
+CHEVRON*,6900,Auto - Fuel,Yes,Gas station
+SUNOCO*,6900,Auto - Fuel,Yes,Gas station
+COSTCO GAS,6900,Auto - Fuel,Yes,Fuel purchase at Costco
+COSTCO*,6400,Office Supplies,Yes,Bulk supplies; could be 6450 kitchen or 1230 inventory
+SAMS CLUB,6400,Office Supplies,Yes,Bulk supplies; review for inventory purchases
+WALMART*,6400,Office Supplies,Yes,General supplies; review for personal vs business
+TARGET*,6400,Office Supplies,Yes,General supplies; flag for personal expense review
+HOME DEPOT*,7200,Repairs - Building,Yes,Could be supplies (6400) or fixed asset; review amount
+LOWES*,7200,Repairs - Building,Yes,Could be supplies (6400) or fixed asset; review amount
+SYSCO*,5060,COGS - Food,Yes,Restaurant food supplier
+US FOODS*,5060,COGS - Food,Yes,Restaurant food supplier
+RESTAURANT DEPOT,5060,COGS - Food,Yes,Restaurant wholesale supplier
+VISTAPRINT*,6690,Promotional Materials,Yes,Business cards and marketing materials
+4IMPRINT*,6690,Promotional Materials,Yes,Branded promotional items
+CUSTOM INK*,6690,Promotional Materials,Yes,Custom apparel and merchandise
+GEICO*,6850,Insurance - Auto,Yes,Auto insurance premium
+PROGRESSIVE*,6850,Insurance - Auto,Yes,Auto insurance premium
+STATE FARM*,6800,Insurance - General Liability,Yes,Insurance premium; check policy type
+HARTFORD*,6800,Insurance - General Liability,Yes,Business insurance premium
+HISCOX*,6810,Insurance - Professional,Yes,Professional liability insurance
+CHASE*,7400,Bank Service Charges,Yes,Bank fees; could be credit card payment (not expense)
+WELLS FARGO*,7400,Bank Service Charges,Yes,Bank fees; watch for loan payments
+BANK OF AMER*,7400,Bank Service Charges,Yes,Bank fees
+IRS*,2300,Federal Tax Payable,No,Tax payment - not an expense; debit liability
+EFTPS*,2300,Federal Tax Payable,No,Electronic Federal Tax Payment System
+STATE TAX*,2310,State Tax Payable,No,State tax payment - not an expense; debit liability
+MAILCHIMP*,6650,Marketing - Email,Yes,Email marketing platform
+CONSTANT CONTACT*,6650,Marketing - Email,Yes,Email marketing platform
+SENDGRID*,6650,Marketing - Email,Yes,Transactional email service
+TWILIO*,5110,Cost of Revenue - Third Party,Yes,Communications API; could be 6500 if not tied to revenue
+HOOTSUITE*,6640,Marketing - Social Media,Yes,Social media management tool
+BUFFER*,6640,Marketing - Social Media,Yes,Social media scheduling tool
+SPROUT SOCIAL,6640,Marketing - Social Media,Yes,Social media management platform
+INDEED*,7730,Recruiting,Yes,Job posting platform
+ZIPRECRUITER*,7730,Recruiting,Yes,Job posting platform
+ROBERT HALF*,6060,Temporary Staffing,Yes,Staffing agency
+ADT*,7910,Security Services,Yes,Security monitoring service
+TERMINIX*,7930,Pest Control,Yes,Pest control service
+WASTE MGMT*,6330,Utilities - Trash,Yes,Waste removal service
+ULINE*,5080,COGS - Packaging,Yes,Packaging and shipping supplies; could be 6400
+WIX*,6520,Domain and Hosting,Yes,Website builder and hosting
+SQUARESPACE*,6520,Domain and Hosting,Yes,Website builder and hosting
+SHOPIFY*,6500,Software Subscriptions,Yes,E-commerce platform subscription
+DOCUSIGN*,6500,Software Subscriptions,Yes,Electronic signature service
+PANDADOC*,6500,Software Subscriptions,Yes,Document automation platform
+LEGALZOOM*,6710,Professional Fees - Legal,Yes,Online legal services
+ROCKET LAWYER,6710,Professional Fees - Legal,Yes,Online legal services
+WEBEX*,6500,Software Subscriptions,Yes,Cisco video conferencing
+RINGCENTRAL*,6340,Telephone / Internet,Yes,Business phone system
+GRASSHOPPER*,6340,Telephone / Internet,Yes,Virtual phone system
+EXPENSIFY*,6500,Software Subscriptions,Yes,Expense management software
+BILL.COM*,6500,Software Subscriptions,Yes,AP/AR automation platform
+BREX*,7400,Bank Service Charges,Yes,Corporate card; watch for expense vs payment
+RAMP*,7400,Bank Service Charges,Yes,Corporate card; watch for expense vs payment
+DIVVY*,7400,Bank Service Charges,Yes,Corporate card; watch for expense vs payment

@@ -1,0 +1,92 @@
+account_area,document_name,description,typical_source,due_days
+General,Prior year audited financial statements,Complete set of prior year financials with audit report,Prior auditor / client files,30
+General,Trial balance (year-end),Detailed trial balance as of the audit period end date,Accounting system (QuickBooks / Xero / NetSuite),14
+General,General ledger detail,Complete GL detail for all accounts for the audit period,Accounting system,14
+General,Chart of accounts,Current chart of accounts with descriptions,Accounting system,30
+General,Organization chart,Current organizational structure showing reporting lines,HR / Management,30
+General,Board minutes and resolutions,Minutes from all board meetings during the audit period,Corporate secretary,21
+General,Shareholder / partner agreements,Current operating agreement or bylaws with amendments,Legal counsel / corporate files,30
+General,List of related parties,Names and relationships of all related parties and transactions,Management,21
+General,Entity structure chart,Diagram of all subsidiaries and affiliates with ownership percentages,Management / Legal,30
+General,Insurance policies schedule,Summary of all active insurance policies with coverage amounts and expiration dates,Insurance broker / CFO,21
+General,Lease agreements,All active lease agreements (real estate and equipment),Office manager / CFO,21
+General,Litigation summary,List of all pending or threatened litigation and legal matters,Legal counsel,21
+General,Management representation letter (template),Auditor provides template; management signs at conclusion,Auditor provides,At conclusion
+Cash,Bank statements (all accounts - year-end),December bank statements for all accounts,Banks (online portal),7
+Cash,Bank reconciliations (all accounts - year-end),Prepared bank reconciliations as of year-end,Accounting / Controller,14
+Cash,Outstanding check list,List of all outstanding checks as of year-end,Accounting system,14
+Cash,Bank confirmation authorization letters,Signed authorization for auditor to confirm balances directly with banks,Management signs; auditor sends,14
+Cash,Petty cash count sheet,Physical count and reconciliation of petty cash at year-end,Office manager,7
+Cash,Intercompany cash transfer schedule,All cash transfers between related entities during the period,Accounting / Treasury,21
+Accounts Receivable,Accounts receivable aging report (year-end),Detailed AR aging by customer as of year-end,Accounting system,14
+Accounts Receivable,AR reconciliation to GL,Reconciliation of AR subledger to general ledger balance,Controller,14
+Accounts Receivable,Subsequent cash receipts listing,Cash receipts received after year-end relating to year-end AR balances,Accounting system (Jan-Feb activity),21
+Accounts Receivable,Allowance for doubtful accounts analysis,Methodology and calculation for the bad debt reserve,Controller / CFO,21
+Accounts Receivable,Write-off authorization and detail,List of AR written off during the period with approval documentation,Controller / Management,21
+Accounts Receivable,Credit memo listing,All credit memos issued during the period and rationale,Sales / Accounting,21
+Accounts Receivable,Top 10 customer revenue detail,Revenue and AR detail for the 10 largest customers,Accounting system,14
+Accounts Receivable,Customer confirmation selections (auditor selects),Auditor will provide list of customers to confirm; client provides addresses,Auditor selects; client provides contact info,14
+Inventory,Physical inventory count sheets,Signed and dated count sheets from the physical inventory observation,Warehouse / Operations,14
+Inventory,Inventory listing (year-end),Complete inventory listing by item with quantities and costs,Inventory management system,14
+Inventory,Inventory reconciliation to GL,Reconciliation of inventory subledger to general ledger,Controller,14
+Inventory,Inventory costing methodology memo,Description of cost flow method (FIFO / LIFO / weighted average) and overhead allocation,Controller / CFO,21
+Inventory,Obsolete and slow-moving inventory analysis,Analysis identifying items requiring write-down or reserve,Operations / Controller,21
+Inventory,Inventory roll-forward,Beginning balance + purchases - COGS - adjustments = ending balance,Controller,21
+Inventory,Cycle count results and adjustments,Summary of all cycle count variances and adjustments made during the year,Warehouse manager,21
+Inventory,Purchase cutoff documentation,Last receiving reports and purchase orders before and after year-end,Receiving / AP,14
+Prepaid Expenses,Prepaid expense schedule,Detailed listing of all prepaid balances with amortization schedules,Accounting,14
+Prepaid Expenses,Supporting invoices for significant prepaids,"Invoice documentation for prepaid items > $[materiality]",AP / Accounting files,21
+Fixed Assets,Fixed asset register / depreciation schedule,Complete listing of all fixed assets with cost basis and accumulated depreciation,Accounting system / Fixed asset module,14
+Fixed Assets,Asset additions schedule,Detail of all assets acquired during the period (date / description / cost / vendor),Accounting / AP,14
+Fixed Assets,Asset dispositions schedule,"Detail of all assets sold, scrapped, or retired (date / description / proceeds / gain or loss)",Accounting / Operations,14
+Fixed Assets,Capital expenditure authorization / approval,Board or management approval for significant capital purchases,CFO / Board minutes,21
+Fixed Assets,Construction in progress detail,Breakdown of CIP projects with costs incurred and estimated completion dates,Project managers / Accounting,21
+Fixed Assets,Title documents for real property,Deeds and title insurance for owned real property,Legal / Corporate files,30
+Accounts Payable,Accounts payable aging report (year-end),Detailed AP aging by vendor as of year-end,Accounting system,14
+Accounts Payable,AP reconciliation to GL,Reconciliation of AP subledger to general ledger balance,Controller,14
+Accounts Payable,Subsequent disbursements listing,Check register / payment listing for 2-4 weeks after year-end,Accounting system (Jan activity),21
+Accounts Payable,Unrecorded liabilities search documentation,Analysis of post-year-end invoices for goods/services received before year-end,Controller,21
+Accounts Payable,Vendor confirmation selections (auditor selects),Auditor provides vendor list; client provides addresses for confirmation,Auditor selects; client provides,14
+Accrued Liabilities,Accrued expenses schedule,Detailed listing of all accrued liabilities at year-end with support,Controller,14
+Accrued Liabilities,Accrued payroll computation,Calculation of wages and salaries earned but unpaid at year-end,Payroll / HR,14
+Accrued Liabilities,Accrued bonus schedule,Detail of bonus accruals with approved amounts by employee,HR / CFO,21
+Accrued Liabilities,Accrued vacation / PTO schedule,Calculation of accrued vacation/PTO liability by employee,HR / Payroll,14
+Accrued Liabilities,Warranty reserve analysis,Methodology and calculation for warranty liability estimate,Operations / Controller,21
+Debt,Loan agreements and amendments,All active loan agreements with current terms,Banks / Lenders / Legal,30
+Debt,Debt amortization schedules,Amortization tables for all outstanding loans,Lenders / Treasury,14
+Debt,Debt covenant compliance calculations,Computation of all financial covenants with supporting data,Controller / CFO,14
+Debt,Line of credit activity,Monthly activity on revolving credit facilities during the period,Bank statements / Treasury,14
+Debt,Debt confirmation authorization letters,Signed authorization for auditor to confirm balances with lenders,Management signs; auditor sends,14
+Debt,Interest expense reconciliation,Reconciliation of interest expense to outstanding debt balances and rates,Controller,21
+Equity,Stock ledger / ownership register,Current register of all shareholders with shares and percentages,Corporate secretary / Transfer agent,21
+Equity,Capital contribution documentation,Records of any capital contributions during the period,Legal / Accounting,21
+Equity,Distribution / dividend register,Record of all distributions or dividends paid during the period,Accounting / Treasury,14
+Equity,Treasury stock activity,Detail of any share repurchases during the period,CFO / Board minutes,21
+Equity,Stock option / equity compensation detail,Summary of all outstanding equity awards with vesting schedules,HR / CFO,21
+Revenue,Revenue by product line / segment,Revenue detail broken down by major category or business segment,Accounting system,14
+Revenue,Top 25 customer list with revenue,Revenue by customer for the 25 largest accounts,Accounting system,14
+Revenue,Significant contract copies,Copies of new or modified contracts above materiality threshold,Sales / Legal,21
+Revenue,Deferred revenue schedule,Detailed listing of all deferred revenue with recognition schedules,Controller,14
+Revenue,Revenue recognition policy memo,Documentation of revenue recognition methodology under ASC 606,Controller / CFO,30
+Revenue,Sales returns and allowances analysis,Summary of returns and credits by period and reason,Sales / Accounting,21
+Revenue,Revenue cutoff testing support,Shipping logs and invoices from last 5 and first 5 days around year-end,Shipping / Accounting,14
+Expenses,Payroll registers (all periods),Detailed payroll registers for each pay period during the year,Payroll provider (ADP / Gusto / Paychex),14
+Expenses,Payroll tax returns (941s and 940),All quarterly Forms 941 and annual Form 940,Payroll provider / Accounting,14
+Expenses,W-2 and W-3 summary,Annual W-2 summary (W-3) reconciled to payroll registers,Payroll provider,14
+Expenses,1099 forms issued,Copies of all 1099-NEC and 1099-MISC forms issued,Accounting,14
+Expenses,Expense reimbursement samples,Sample of employee expense reports with receipts for testing,Accounting / Employees,21
+Expenses,Executive compensation detail,Complete compensation detail for officers and key management,HR / Payroll / CFO,21
+Income Tax,Federal and state tax returns (prior year),Copies of all filed income tax returns,Tax preparer / Client files,30
+Income Tax,Estimated tax payment schedule,Dates and amounts of all estimated tax payments made during the year,Accounting / Treasury,14
+Income Tax,Tax provision workpapers,Current and deferred tax provision calculation,Tax department / Tax preparer,21
+Income Tax,Deferred tax asset / liability schedule,Detail of all temporary differences and their deferred tax impact,Tax department,21
+Income Tax,NOL carryforward schedule,Net operating loss carryforward detail with expiration dates,Tax preparer,21
+Income Tax,Tax credit documentation,Support for all tax credits claimed (R&D / WOTC / etc.),Tax preparer,21
+Income Tax,State apportionment schedules,Sales / payroll / property factors by state,Tax department,21
+Other,Subsequent events questionnaire (completed),Management responses to subsequent events inquiries through report date,Management,At conclusion
+Other,Going concern assessment,Management's evaluation of the entity's ability to continue operations,CFO / Management,21
+Other,Contingent liability questionnaire,Responses regarding potential liabilities not recorded on the books,Management / Legal counsel,21
+Other,Attorney letter (legal representation letter),Auditor sends; attorney responds regarding pending/threatened litigation,Auditor sends to client's legal counsel,21
+Other,IT general controls questionnaire,Responses regarding IT environment and access controls,IT department / IT manager,21
+Other,Journal entry listing (year-end),Complete listing of all manual journal entries posted during the period,Accounting system,14
+Other,Adjusting journal entries from prior audit,List of audit adjustments proposed and recorded from the prior year audit,Prior auditor workpapers,30
