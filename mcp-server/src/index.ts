@@ -73,27 +73,23 @@ async function qboRequest<T = unknown>(opts: QboRequestOptions): Promise<T> {
     }
   }
 
-  let res = await fetch(url.toString(), {
-    method: opts.method ?? "GET",
+  const serializedBody = opts.body ? JSON.stringify(opts.body) : undefined;
+  const method = opts.method ?? "GET";
+  const makeFetchOpts = () => ({
+    method,
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: opts.body ? JSON.stringify(opts.body) : undefined,
+    body: serializedBody,
   });
+
+  let res = await fetch(url.toString(), makeFetchOpts());
 
   if (res.status === 401) {
     await refreshAccessToken();
-    res = await fetch(url.toString(), {
-      method: opts.method ?? "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: opts.body ? JSON.stringify(opts.body) : undefined,
-    });
+    res = await fetch(url.toString(), makeFetchOpts());
   }
 
   if (!res.ok) {
@@ -142,10 +138,14 @@ const VALID_TXN_TYPES = new Set([
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
-function validateAccountType(value: string): string {
-  if (!VALID_ACCOUNT_TYPES.has(value)) {
+function validateEnum(
+  value: string,
+  allowed: Set<string>,
+  fieldName: string,
+): string {
+  if (!allowed.has(value)) {
     throw new Error(
-      `Invalid accountType '${value}'. Must be one of: ${[...VALID_ACCOUNT_TYPES].join(", ")}`,
+      `Invalid ${fieldName} '${value}'. Must be one of: ${[...allowed].join(", ")}`,
     );
   }
   return value;
@@ -160,13 +160,44 @@ function validateDate(value: string, fieldName: string): string {
   return value;
 }
 
-function validateTxnType(value: string): string {
-  if (!VALID_TXN_TYPES.has(value)) {
-    throw new Error(
-      `Invalid txnType '${value}'. Must be one of: ${[...VALID_TXN_TYPES].join(", ")}`,
+function mcpSuccess(data: unknown) {
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(data, null, 2) }],
+  };
+}
+
+function mcpError(error: unknown) {
+  return {
+    content: [
+      {
+        type: "text" as const,
+        text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      },
+    ],
+    isError: true as const,
+  };
+}
+
+function buildDateRangeQuery(
+  entity: string,
+  opts: {
+    startDate?: string;
+    endDate?: string;
+    unpaidOnly?: boolean;
+    limit?: number;
+  },
+): string {
+  const conditions: string[] = [];
+  if (opts.startDate)
+    conditions.push(
+      `TxnDate >= '${validateDate(opts.startDate, "startDate")}'`,
     );
-  }
-  return value;
+  if (opts.endDate)
+    conditions.push(`TxnDate <= '${validateDate(opts.endDate, "endDate")}'`);
+  if (opts.unpaidOnly) conditions.push("Balance > '0'");
+  const where =
+    conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
+  return `SELECT * FROM ${entity} ${where} ORDERBY DueDate MAXRESULTS ${opts.limit ?? 100}`;
 }
 
 // --- MCP Server -----------------------------------------------------------
@@ -204,25 +235,16 @@ server.registerTool(
     try {
       let query = "SELECT * FROM Account MAXRESULTS 1000";
       if (accountType) {
-        const safeType = validateAccountType(accountType);
+        const safeType = validateEnum(
+          accountType,
+          VALID_ACCOUNT_TYPES,
+          "accountType",
+        );
         query = `SELECT * FROM Account WHERE AccountType = '${safeType}' MAXRESULTS 1000`;
       }
-      const data = await qboQuery(query);
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(await qboQuery(query));
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -255,24 +277,13 @@ server.registerTool(
       const safeStart = validateDate(startDate, "startDate");
       const safeEnd = validateDate(endDate, "endDate");
       const entity =
-        txnType !== undefined ? validateTxnType(txnType) : "Purchase";
+        txnType !== undefined
+          ? validateEnum(txnType, VALID_TXN_TYPES, "txnType")
+          : "Purchase";
       const query = `SELECT * FROM ${entity} WHERE TxnDate >= '${safeStart}' AND TxnDate <= '${safeEnd}' MAXRESULTS ${limit}`;
-      const data = await qboQuery(query);
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(await qboQuery(query));
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -297,30 +308,19 @@ server.registerTool(
   },
   async ({ startDate, endDate, summarizeBy }) => {
     try {
-      const data = await qboRequest({
-        path: "/reports/ProfitAndLoss",
-        params: {
-          start_date: startDate,
-          end_date: endDate,
-          summarize_column_by: summarizeBy,
-          minorversion: 75,
-        },
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      return mcpSuccess(
+        await qboRequest({
+          path: "/reports/ProfitAndLoss",
+          params: {
+            start_date: validateDate(startDate, "startDate"),
+            end_date: validateDate(endDate, "endDate"),
+            summarize_column_by: summarizeBy,
+            minorversion: 75,
           },
-        ],
-        isError: true,
-      };
+        }),
+      );
+    } catch (error) {
+      return mcpError(error);
     }
   },
 );
@@ -340,25 +340,17 @@ server.registerTool(
   },
   async ({ asOfDate }) => {
     try {
-      const data = await qboRequest({
-        path: "/reports/BalanceSheet",
-        params: { date_macro: undefined, as_of: asOfDate, minorversion: 75 },
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      return mcpSuccess(
+        await qboRequest({
+          path: "/reports/BalanceSheet",
+          params: {
+            as_of: validateDate(asOfDate, "asOfDate"),
+            minorversion: 75,
           },
-        ],
-        isError: true,
-      };
+        }),
+      );
+    } catch (error) {
+      return mcpError(error);
     }
   },
 );
@@ -381,27 +373,16 @@ server.registerTool(
   async ({ startDate, endDate, account }) => {
     try {
       const params: Record<string, string | number> = {
-        start_date: startDate,
-        end_date: endDate,
+        start_date: validateDate(startDate, "startDate"),
+        end_date: validateDate(endDate, "endDate"),
         minorversion: 75,
       };
       if (account) params.account = account;
-      const data = await qboRequest({ path: "/reports/GeneralLedger", params });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      return mcpSuccess(
+        await qboRequest({ path: "/reports/GeneralLedger", params }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -426,24 +407,11 @@ server.registerTool(
   async ({ active, limit }) => {
     try {
       const where = active ? "WHERE Active = true" : "";
-      const data = await qboQuery(
-        `SELECT * FROM Customer ${where} MAXRESULTS ${limit}`,
+      return mcpSuccess(
+        await qboQuery(`SELECT * FROM Customer ${where} MAXRESULTS ${limit}`),
       );
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -464,24 +432,11 @@ server.registerTool(
   async ({ active, limit }) => {
     try {
       const where = active ? "WHERE Active = true" : "";
-      const data = await qboQuery(
-        `SELECT * FROM Vendor ${where} MAXRESULTS ${limit}`,
+      return mcpSuccess(
+        await qboQuery(`SELECT * FROM Vendor ${where} MAXRESULTS ${limit}`),
       );
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -508,32 +463,18 @@ server.registerTool(
   },
   async ({ startDate, endDate, unpaidOnly, limit }) => {
     try {
-      const conditions: string[] = [];
-      if (startDate)
-        conditions.push(`TxnDate >= '${validateDate(startDate, "startDate")}'`);
-      if (endDate)
-        conditions.push(`TxnDate <= '${validateDate(endDate, "endDate")}'`);
-      if (unpaidOnly) conditions.push("Balance > '0'");
-      const where =
-        conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
-      const data = await qboQuery(
-        `SELECT * FROM Invoice ${where} ORDERBY DueDate MAXRESULTS ${limit}`,
+      return mcpSuccess(
+        await qboQuery(
+          buildDateRangeQuery("Invoice", {
+            startDate,
+            endDate,
+            unpaidOnly,
+            limit,
+          }),
+        ),
       );
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -556,32 +497,18 @@ server.registerTool(
   },
   async ({ startDate, endDate, unpaidOnly, limit }) => {
     try {
-      const conditions: string[] = [];
-      if (startDate)
-        conditions.push(`TxnDate >= '${validateDate(startDate, "startDate")}'`);
-      if (endDate)
-        conditions.push(`TxnDate <= '${validateDate(endDate, "endDate")}'`);
-      if (unpaidOnly) conditions.push("Balance > '0'");
-      const where =
-        conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
-      const data = await qboQuery(
-        `SELECT * FROM Bill ${where} ORDERBY DueDate MAXRESULTS ${limit}`,
+      return mcpSuccess(
+        await qboQuery(
+          buildDateRangeQuery("Bill", {
+            startDate,
+            endDate,
+            unpaidOnly,
+            limit,
+          }),
+        ),
       );
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -605,26 +532,12 @@ server.registerTool(
   async ({ asOfDate }) => {
     try {
       const params: Record<string, string | number> = { minorversion: 75 };
-      if (asOfDate) params.report_date = asOfDate;
-      const data = await qboRequest({
-        path: "/reports/AgedReceivables",
-        params,
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      if (asOfDate) params.report_date = validateDate(asOfDate, "asOfDate");
+      return mcpSuccess(
+        await qboRequest({ path: "/reports/AgedReceivables", params }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -645,23 +558,12 @@ server.registerTool(
   async ({ asOfDate }) => {
     try {
       const params: Record<string, string | number> = { minorversion: 75 };
-      if (asOfDate) params.report_date = asOfDate;
-      const data = await qboRequest({ path: "/reports/AgedPayables", params });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
+      if (asOfDate) params.report_date = validateDate(asOfDate, "asOfDate");
+      return mcpSuccess(
+        await qboRequest({ path: "/reports/AgedPayables", params }),
+      );
     } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-          },
-        ],
-        isError: true,
-      };
+      return mcpError(error);
     }
   },
 );
@@ -702,31 +604,20 @@ server.registerTool(
         DetailType: "JournalEntryLineDetail",
       }));
 
-      const data = await qboRequest({
-        method: "POST",
-        path: "/journalentry",
-        params: { minorversion: 75 },
-        body: {
-          TxnDate: date,
-          PrivateNote: memo,
-          Line: jeLine,
-        },
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      return mcpSuccess(
+        await qboRequest({
+          method: "POST",
+          path: "/journalentry",
+          params: { minorversion: 75 },
+          body: {
+            TxnDate: validateDate(date, "date"),
+            PrivateNote: memo,
+            Line: jeLine,
           },
-        ],
-        isError: true,
-      };
+        }),
+      );
+    } catch (error) {
+      return mcpError(error);
     }
   },
 );
@@ -746,25 +637,17 @@ server.registerTool(
   },
   async ({ asOfDate }) => {
     try {
-      const data = await qboRequest({
-        path: "/reports/TrialBalance",
-        params: { date_macro: undefined, as_of: asOfDate, minorversion: 75 },
-      });
-      return {
-        content: [
-          { type: "text" as const, text: JSON.stringify(data, null, 2) },
-        ],
-      };
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+      return mcpSuccess(
+        await qboRequest({
+          path: "/reports/TrialBalance",
+          params: {
+            as_of: validateDate(asOfDate, "asOfDate"),
+            minorversion: 75,
           },
-        ],
-        isError: true,
-      };
+        }),
+      );
+    } catch (error) {
+      return mcpError(error);
     }
   },
 );
