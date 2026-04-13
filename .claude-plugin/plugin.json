@@ -1,9 +1,7 @@
 {
-  "name": "openclaw-accounting",
+  "name": "accounting-ai-plugins",
   "version": "1.0.0",
   "description": "AI plugins for accounting professionals — transaction categorization, month-end reports, tax prep, client comms, audit prep",
-  "author": "OpenClaw",
-  "homepage": "https://openclaw.ai",
   "skills": [
     "plugins/transaction-categorizer/SKILL.md",
     "plugins/month-end-reporter/SKILL.md",

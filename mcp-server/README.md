@@ -36,7 +36,7 @@
   "mcpServers": {
     "quickbooks": {
       "command": "npx",
-      "args": ["-y", "@openclaw/quickbooks-mcp"],
+      "args": ["-y", "quickbooks-mcp"],
       "env": {
         "QBO_CLIENT_ID": "your-client-id",
         "QBO_CLIENT_SECRET": "your-client-secret",

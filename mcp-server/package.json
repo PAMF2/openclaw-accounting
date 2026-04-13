@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/quickbooks-mcp",
+  "name": "quickbooks-mcp",
   "version": "1.0.0",
   "description": "MCP server for QuickBooks Online — transactions, reports, accounts, invoices, and financial data via Claude",
   "type": "module",
@@ -27,7 +27,7 @@
     "bookkeeping",
     "qbo"
   ],
-  "author": "OpenClaw",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

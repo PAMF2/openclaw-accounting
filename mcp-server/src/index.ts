@@ -111,6 +111,64 @@ async function qboQuery<T = unknown>(query: string): Promise<T> {
   });
 }
 
+// --- Input Sanitization ---------------------------------------------------
+
+// Valid QBO AccountType values per the Intuit API reference.
+const VALID_ACCOUNT_TYPES = new Set([
+  "Bank",
+  "Other Current Asset",
+  "Fixed Asset",
+  "Other Asset",
+  "Accounts Receivable",
+  "Equity",
+  "Expense",
+  "Other Expense",
+  "Cost of Goods Sold",
+  "Accounts Payable",
+  "Credit Card",
+  "Long Term Liability",
+  "Other Current Liability",
+  "Income",
+  "Other Income",
+]);
+
+// Valid QBO transaction entity names used in FROM clauses.
+const VALID_TXN_TYPES = new Set([
+  "Purchase",
+  "Deposit",
+  "Transfer",
+  "JournalEntry",
+]);
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function validateAccountType(value: string): string {
+  if (!VALID_ACCOUNT_TYPES.has(value)) {
+    throw new Error(
+      `Invalid accountType '${value}'. Must be one of: ${[...VALID_ACCOUNT_TYPES].join(", ")}`,
+    );
+  }
+  return value;
+}
+
+function validateDate(value: string, fieldName: string): string {
+  if (!DATE_RE.test(value)) {
+    throw new Error(
+      `Invalid ${fieldName} '${value}'. Expected format: YYYY-MM-DD`,
+    );
+  }
+  return value;
+}
+
+function validateTxnType(value: string): string {
+  if (!VALID_TXN_TYPES.has(value)) {
+    throw new Error(
+      `Invalid txnType '${value}'. Must be one of: ${[...VALID_TXN_TYPES].join(", ")}`,
+    );
+  }
+  return value;
+}
+
 // --- MCP Server -----------------------------------------------------------
 
 const server = new McpServer(
@@ -145,8 +203,10 @@ server.registerTool(
   async ({ accountType }) => {
     try {
       let query = "SELECT * FROM Account MAXRESULTS 1000";
-      if (accountType)
-        query = `SELECT * FROM Account WHERE AccountType = '${accountType}' MAXRESULTS 1000`;
+      if (accountType) {
+        const safeType = validateAccountType(accountType);
+        query = `SELECT * FROM Account WHERE AccountType = '${safeType}' MAXRESULTS 1000`;
+      }
       const data = await qboQuery(query);
       return {
         content: [
@@ -192,14 +252,11 @@ server.registerTool(
   },
   async ({ startDate, endDate, accountName, txnType, limit }) => {
     try {
-      let query = `SELECT * FROM Purchase WHERE TxnDate >= '${startDate}' AND TxnDate <= '${endDate}' MAXRESULTS ${limit}`;
-      if (txnType === "Deposit") {
-        query = `SELECT * FROM Deposit WHERE TxnDate >= '${startDate}' AND TxnDate <= '${endDate}' MAXRESULTS ${limit}`;
-      } else if (txnType === "JournalEntry") {
-        query = `SELECT * FROM JournalEntry WHERE TxnDate >= '${startDate}' AND TxnDate <= '${endDate}' MAXRESULTS ${limit}`;
-      } else if (txnType === "Transfer") {
-        query = `SELECT * FROM Transfer WHERE TxnDate >= '${startDate}' AND TxnDate <= '${endDate}' MAXRESULTS ${limit}`;
-      }
+      const safeStart = validateDate(startDate, "startDate");
+      const safeEnd = validateDate(endDate, "endDate");
+      const entity =
+        txnType !== undefined ? validateTxnType(txnType) : "Purchase";
+      const query = `SELECT * FROM ${entity} WHERE TxnDate >= '${safeStart}' AND TxnDate <= '${safeEnd}' MAXRESULTS ${limit}`;
       const data = await qboQuery(query);
       return {
         content: [
@@ -452,8 +509,10 @@ server.registerTool(
   async ({ startDate, endDate, unpaidOnly, limit }) => {
     try {
       const conditions: string[] = [];
-      if (startDate) conditions.push(`TxnDate >= '${startDate}'`);
-      if (endDate) conditions.push(`TxnDate <= '${endDate}'`);
+      if (startDate)
+        conditions.push(`TxnDate >= '${validateDate(startDate, "startDate")}'`);
+      if (endDate)
+        conditions.push(`TxnDate <= '${validateDate(endDate, "endDate")}'`);
       if (unpaidOnly) conditions.push("Balance > '0'");
       const where =
         conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
@@ -498,8 +557,10 @@ server.registerTool(
   async ({ startDate, endDate, unpaidOnly, limit }) => {
     try {
       const conditions: string[] = [];
-      if (startDate) conditions.push(`TxnDate >= '${startDate}'`);
-      if (endDate) conditions.push(`TxnDate <= '${endDate}'`);
+      if (startDate)
+        conditions.push(`TxnDate >= '${validateDate(startDate, "startDate")}'`);
+      if (endDate)
+        conditions.push(`TxnDate <= '${validateDate(endDate, "endDate")}'`);
       if (unpaidOnly) conditions.push("Balance > '0'");
       const where =
         conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";

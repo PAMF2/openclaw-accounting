@@ -1,0 +1,32 @@
+{
+  "listing": {
+    "title": "Accounting AI Suite — Transactions, Month-End, Tax Prep",
+    "shortDescription": "5 AI plugins for accountants. Transaction categorization, month-end reports, tax prep, client communications, and audit preparation.",
+    "longDescription": "The Accounting AI Suite streamlines the recurring workflows that consume the most billable time for bookkeepers and CPAs. Transaction Categorizer maps imported bank and credit card lines to the correct chart-of-accounts categories with QuickBooks-compatible output; Month-End Reporter assembles variance commentary and executive summaries from trial balance data; Tax Prep Assistant builds entity-specific organizer packets and flags deduction opportunities; Client Communication drafts engagement letters, status updates, and deadline reminders; and Audit Prep generates PBC lists, schedules, and control narratives. Each plugin ships with a system prompt tuned for GAAP and tax-code language and a Codex config for Shopify-compatible delivery.",
+    "category": "productivity",
+    "tags": [
+      "accounting",
+      "quickbooks",
+      "bookkeeping",
+      "tax-prep",
+      "month-end",
+      "audit",
+      "cpa",
+      "client-communications"
+    ],
+    "screenshots": [],
+    "pricing": {
+      "model": "paid",
+      "priceRange": "$99-199"
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "claude-code",
+      "codex",
+      "perplexity",
+      "manus"
+    ],
+    "minVersion": "1.0.0"
+  },
+}
