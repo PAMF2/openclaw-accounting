@@ -260,10 +260,6 @@ server.registerTool(
     inputSchema: {
       startDate: z.string().describe("Start date YYYY-MM-DD"),
       endDate: z.string().describe("End date YYYY-MM-DD"),
-      accountName: z
-        .string()
-        .optional()
-        .describe("Filter by account name (e.g. 'Checking')"),
       txnType: z
         .string()
         .optional()
@@ -272,7 +268,7 @@ server.registerTool(
     },
     annotations: { destructiveHint: false, idempotentHint: true },
   },
-  async ({ startDate, endDate, accountName, txnType, limit }) => {
+  async ({ startDate, endDate, txnType, limit }) => {
     try {
       const safeStart = validateDate(startDate, "startDate");
       const safeEnd = validateDate(endDate, "endDate");
