@@ -27,8 +27,6 @@ if (!CLIENT_ID || !CLIENT_SECRET || !REALM_ID) {
 const BASE_URL = `https://quickbooks.api.intuit.com/v3/company/${REALM_ID}`;
 const TOKEN_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
 
-// --- Token Refresh ---------------------------------------------------------
-
 async function refreshAccessToken(): Promise<void> {
   if (!refreshToken) {
     throw new Error("No refresh token. Re-authenticate with QuickBooks.");
@@ -55,8 +53,6 @@ async function refreshAccessToken(): Promise<void> {
   refreshToken = data.refresh_token;
   console.error("QuickBooks access token refreshed");
 }
-
-// --- API Client -----------------------------------------------------------
 
 interface QboRequestOptions {
   method?: string;
@@ -107,9 +103,6 @@ async function qboQuery<T = unknown>(query: string): Promise<T> {
   });
 }
 
-// --- Input Sanitization ---------------------------------------------------
-
-// Valid QBO AccountType values per the Intuit API reference.
 const VALID_ACCOUNT_TYPES = new Set([
   "Bank",
   "Other Current Asset",
@@ -128,13 +121,14 @@ const VALID_ACCOUNT_TYPES = new Set([
   "Other Income",
 ]);
 
-// Valid QBO transaction entity names used in FROM clauses.
 const VALID_TXN_TYPES = new Set([
   "Purchase",
   "Deposit",
   "Transfer",
   "JournalEntry",
 ]);
+
+const VALID_ENTITY_NAMES = new Set(["Invoice", "Bill"]);
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -187,6 +181,7 @@ function buildDateRangeQuery(
     limit?: number;
   },
 ): string {
+  validateEnum(entity, VALID_ENTITY_NAMES, "entity");
   const conditions: string[] = [];
   if (opts.startDate)
     conditions.push(
@@ -200,8 +195,6 @@ function buildDateRangeQuery(
   return `SELECT * FROM ${entity} ${where} ORDERBY DueDate MAXRESULTS ${opts.limit ?? 100}`;
 }
 
-// --- MCP Server -----------------------------------------------------------
-
 const server = new McpServer(
   { name: "quickbooks-mcp", version: "1.0.0" },
   {
@@ -212,8 +205,6 @@ const server = new McpServer(
       "and get_balance_sheet for financial position.",
   },
 );
-
-// --- TOOL: Get Chart of Accounts ------------------------------------------
 
 server.registerTool(
   "get_chart_of_accounts",
@@ -249,8 +240,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Query Transactions ---------------------------------------------
-
 server.registerTool(
   "query_transactions",
   {
@@ -283,8 +272,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Get Profit & Loss Report ---------------------------------------
 
 server.registerTool(
   "get_profit_loss",
@@ -321,8 +308,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Get Balance Sheet ----------------------------------------------
-
 server.registerTool(
   "get_balance_sheet",
   {
@@ -350,8 +335,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Get General Ledger ---------------------------------------------
 
 server.registerTool(
   "get_general_ledger",
@@ -383,8 +366,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: List Customers -------------------------------------------------
-
 server.registerTool(
   "list_customers",
   {
@@ -402,7 +383,7 @@ server.registerTool(
   },
   async ({ active, limit }) => {
     try {
-      const where = active ? "WHERE Active = true" : "";
+      const where = active ? "WHERE Active = true" : "WHERE Active = false";
       return mcpSuccess(
         await qboQuery(`SELECT * FROM Customer ${where} MAXRESULTS ${limit}`),
       );
@@ -411,8 +392,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: List Vendors ---------------------------------------------------
 
 server.registerTool(
   "list_vendors",
@@ -427,7 +406,7 @@ server.registerTool(
   },
   async ({ active, limit }) => {
     try {
-      const where = active ? "WHERE Active = true" : "";
+      const where = active ? "WHERE Active = true" : "WHERE Active = false";
       return mcpSuccess(
         await qboQuery(`SELECT * FROM Vendor ${where} MAXRESULTS ${limit}`),
       );
@@ -436,8 +415,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: List Invoices --------------------------------------------------
 
 server.registerTool(
   "list_invoices",
@@ -475,8 +452,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: List Bills -----------------------------------------------------
-
 server.registerTool(
   "list_bills",
   {
@@ -509,8 +484,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Get Accounts Receivable Aging ----------------------------------
-
 server.registerTool(
   "get_ar_aging",
   {
@@ -538,8 +511,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Get Accounts Payable Aging -------------------------------------
-
 server.registerTool(
   "get_ap_aging",
   {
@@ -563,8 +534,6 @@ server.registerTool(
     }
   },
 );
-
-// --- TOOL: Create Journal Entry -------------------------------------------
 
 server.registerTool(
   "create_journal_entry",
@@ -618,8 +587,6 @@ server.registerTool(
   },
 );
 
-// --- TOOL: Get Trial Balance ----------------------------------------------
-
 server.registerTool(
   "get_trial_balance",
   {
@@ -647,8 +614,6 @@ server.registerTool(
     }
   },
 );
-
-// --- PROMPT: Month-End Close ----------------------------------------------
 
 server.registerPrompt(
   "month-end-close",
@@ -693,8 +658,6 @@ server.registerPrompt(
   },
 );
 
-// --- PROMPT: Transaction Review -------------------------------------------
-
 server.registerPrompt(
   "categorize-transactions",
   {
@@ -727,8 +690,6 @@ server.registerPrompt(
     ],
   }),
 );
-
-// --- Start Server ---------------------------------------------------------
 
 async function main() {
   const transport = new StdioServerTransport();
