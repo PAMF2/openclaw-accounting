@@ -615,6 +615,93 @@ server.registerTool(
   },
 );
 
+server.registerTool(
+  "webhook_setup_guide",
+  {
+    title: "Webhook Setup Guide",
+    description:
+      "Get instructions for setting up QuickBooks CloudEvents webhooks to receive real-time notifications.",
+    inputSchema: {},
+    annotations: { destructiveHint: false, idempotentHint: true },
+  },
+  async () => {
+    try {
+      return mcpSuccess({
+        format: "CloudEvents v1.0",
+        deadline: "May 15, 2026 — apps must migrate or stop receiving webhooks",
+        setup_steps: [
+          "1. Go to Intuit Developer Portal → Your App → Webhooks",
+          "2. Set your HTTPS endpoint URL",
+          "3. Copy the verifier token for HMAC-SHA256 signature validation",
+          "4. Subscribe to entity events (invoice, payment, customer, vendor, etc.)",
+          "5. Enable CloudEvents format in the sandbox first, then production",
+        ],
+        available_events: [
+          "qbo.invoice.created.v1",
+          "qbo.invoice.updated.v1",
+          "qbo.invoice.deleted.v1",
+          "qbo.payment.created.v1",
+          "qbo.payment.updated.v1",
+          "qbo.customer.created.v1",
+          "qbo.customer.updated.v1",
+          "qbo.customer.merged.v1",
+          "qbo.vendor.created.v1",
+          "qbo.vendor.updated.v1",
+          "qbo.bill.created.v1",
+          "qbo.bill.updated.v1",
+          "qbo.account.created.v1",
+          "qbo.account.updated.v1",
+        ],
+        sample_payload: {
+          specversion: "1.0",
+          id: "88cd52aa-33b6-4351-9aa4-47572edbd068",
+          source: "intuit.dsnBgbseACLLRZNxo2dfc4evmEJdxde58xeeYcZliOU=",
+          type: "qbo.customer.created.v1",
+          datacontenttype: "application/json",
+          time: "2025-09-10T21:31:25.179Z",
+          intuitentityid: "1234",
+          intuitaccountid: "310687",
+          data: {},
+        },
+        note: "CloudEvents webhooks only notify you of changes — the data field is empty. Use the MCP tools (get_invoice, list_customers, etc.) to fetch the actual entity after receiving a notification.",
+      });
+    } catch (error) {
+      return mcpError(error);
+    }
+  },
+);
+
+server.registerTool(
+  "get_recent_changes",
+  {
+    title: "Get Recent Changes",
+    description:
+      "Poll for entities that changed since a given timestamp using Change Data Capture (CDC). Use this instead of webhooks for real-time monitoring.",
+    inputSchema: {
+      entities: z
+        .string()
+        .describe(
+          "Comma-separated entity list: Invoice,Payment,Customer,Vendor,Bill,Account",
+        ),
+      changedSince: z
+        .string()
+        .describe("ISO 8601 timestamp, e.g. 2026-04-13T00:00:00Z"),
+    },
+    annotations: { destructiveHint: false, idempotentHint: true },
+  },
+  async ({ entities, changedSince }) => {
+    try {
+      const data = await qboRequest({
+        path: "/cdc",
+        params: { entities, changedSince },
+      });
+      return mcpSuccess(data);
+    } catch (error) {
+      return mcpError(error);
+    }
+  },
+);
+
 server.registerPrompt(
   "month-end-close",
   {

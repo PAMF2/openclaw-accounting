@@ -13,6 +13,20 @@
         "QBO_ACCESS_TOKEN": "",
         "QBO_REFRESH_TOKEN": ""
       }
+    },
+    "xero": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "xero-mcp"
+      ],
+      "env": {
+        "XERO_CLIENT_ID": "",
+        "XERO_CLIENT_SECRET": "",
+        "XERO_TENANT_ID": "",
+        "XERO_ACCESS_TOKEN": "",
+        "XERO_REFRESH_TOKEN": ""
+      }
     }
   }
 }
